@@ -62,8 +62,8 @@ class Tweet(BaseModel):
         min_length = 1,
     )
     create_at: datetime = Field(default = datetime.now())
-    update_at: Optional[datetime] = Field(default = None)
-    By: User = Field(...) # heredo los datos del usuario que estan en la clase User
+    updated_at: Optional[datetime] = Field(default = None)
+    by: User = Field(...) # heredo los datos del usuario que estan en la clase User
 
 # Path Operations
 
@@ -202,8 +202,35 @@ def home():
     summary = "Post a Tweet",
     tags = ["Tweets"]
 )
-def post():
-    pass
+def post(tweet: Tweet = Body(...)):
+    """
+    Post a Tweet
+    
+    This path operation post a tweet in the app
+    Parameters:
+    - Request body parameter.
+        - tweet: Tweet.
+    
+    Return a Json with basic tweet information:
+    - tweet_id: UUID 
+    - content: str 
+    - create_at: datetime 
+    - updated_at: Optional[datetime] 
+    - By: User  
+    """
+    
+    with open("tweets.json", "r+", encoding = "utf-8") as f:
+        results = json.loads(f.read()) # almacenamos los datos y los convertimos a JSON
+        tweet_dict = tweet.dict() # Transformamos el JSON En diccionario que contiene la info del usuario
+        tweet_dict["tweet_id"] = str(tweet_dict["tweet_id"]) # Convertimos el datos UUID a STRING
+        tweet_dict["create_at"] = str(tweet_dict["create_at"]) # Convertimos el datos datetime a STRING
+        tweet_dict["updated_at"] = str(tweet_dict["updated_at"])
+        tweet_dict["by"]["user_id"] = str(tweet_dict["by"]["user_id"])
+        tweet_dict["by"]["birth_date"] = str(tweet_dict["by"]["birth_date"])
+        results.append(tweet_dict)
+        f.seek(0) # nos aseguramos que tener todo como se tiene en la lista del JSON "[]"
+        f.write(json.dumps(results)) # seguir escribiendo en la mismos listado del JSON "[]" y evitar que se genere otra "[][]"
+        return tweet
 
 ### Show a Tweet
 @app.get(
@@ -216,7 +243,7 @@ def post():
 def show_a_tweet():
     pass
 
-### Show a Tweet
+### Delete a Tweet
 @app.delete(
     path = "/tweets/{tweet_id}/delete",
     response_model = Tweet, # Respondemos con la información de los tweets -- heredada de la class Tweet
@@ -228,7 +255,7 @@ def delete_a_tweet():
     pass
 
 
-### Show a Tweet
+### Update a Tweet
 @app.put(
     path = "/tweets/{tweet_id}/update",
     response_model = Tweet, # Respondemos con la información de los tweets -- heredada de la class Tweet

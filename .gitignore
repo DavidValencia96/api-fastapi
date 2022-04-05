@@ -1,1 +1,5 @@
+#DIR
 venv/
+
+# ARCH
+/document.txt
