@@ -1,4 +1,5 @@
 # Python native
+import json
 from uuid import UUID
 from datetime import date
 from datetime import datetime
@@ -8,10 +9,12 @@ from typing import Optional, List
 from pydantic import BaseModel
 from pydantic import EmailStr
 from pydantic import Field 
-from fastapi import status
+
 
 # FastAPI
 from fastapi import FastAPI
+from fastapi import status
+from fastapi import Body
 
 app = FastAPI()
 
@@ -74,23 +77,33 @@ class Tweet(BaseModel):
     summary = "Register a User",
     tags = ["User"]
 )
-def signup():
+def signup(user: UserRegister = Body(...)):
     """
     Signup User
     
-    This path operation register a user in the app
+    This path operation register a user in the app.
 
     Parameters:
-        - Request body parameter
-            - user: UserRegister
+        - Request body parameter.
+            - user: UserRegister.
     
     Return a Json with basic user information:
-        - user_id: UUID
-        - email: Emailstr
-        - first_name: str
-        - last_name: str
-        - brith_date: str
+        - user_id: UUID.
+        - email: Emailstr.
+        - first_name: str.
+        - last_name: str.
+        - brith_date: datetime.
     """
+    
+    with open("users.json", "r+", encoding = "utf-8") as f:
+        results = json.loads(f.read()) # almacenamos los datos y los convertimos a JSON
+        user_dict = user.dict() # Transformamos el JSON En diccionario que contiene la info del usuario
+        user_dict["user_id"] = str(user_dict["user_id"]) # Convertimos el datos UUID a STRING
+        user_dict["birth_date"] = str(user_dict["birth_date"]) # Convertimos el datos datetime a STRING
+        results.append(user_dict)
+        f.seek(0) # nos aseguramos que tener todo como se tiene en la lista del JSON "[]"
+        f.write(json.dumps(results)) # seguir escribiendo en la mismos listado del JSON "[]" y evitar que se genere otra "[][]"
+        return user
     
 ### Login user
 @app.post(
