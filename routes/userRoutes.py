@@ -28,15 +28,12 @@ from cryptography.fernet import Fernet
 # Archivos proyecto
 from config.db import conn
 from models.userModel import users
-from schemas.userChemas import User
+from schemas.userSchemas import User
 
 
 key = Fernet.generate_key() # generamos una contraseña aleatoria
 f = Fernet(key) # tenemos la funcion f
 
-# Capturar fecha actual
-my_datetime = datetime.now()
-current_day = my_datetime.strftime('%d/%m/%Y')
 
 user = APIRouter()
 
@@ -67,7 +64,6 @@ def list_user():
     status_code = status.HTTP_200_OK,
     summary = "Crear usuario en DB",
     tags = ["User Data Base"]
-    # response_model = User
 )
 def create_user(user: User = Body(...)):
     #diccionaro que contiene los datos solciitados
@@ -81,8 +77,6 @@ def create_user(user: User = Body(...)):
     } 
     new_user["password"] = f.encrypt(user.password.encode("utf-8")) # encriptamos la contraseña y en utf-8
     result = conn.execute(users.insert().values(new_user)) # ejecutamos la inserción de datoa
-    # print(result.lastrowid)
-    
     # el sistema consulta en la tabla users, y consultara con la validación del where el ultimo resultado insertado where tabla - c=columna .id
     # y solo devolvera el primer elemento
     

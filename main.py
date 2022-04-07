@@ -21,6 +21,8 @@ from fastapi import Path
 
 # Routes
 from routes.userRoutes import user
+from routes.tweetRoutes import tweet
+from routes.commentsRoutes import comment
 
 app = FastAPI(
     title="Api Programación Web in FastApi - Python",
@@ -28,6 +30,8 @@ app = FastAPI(
 )
 
 app.include_router(user)
+app.include_router(tweet)
+app.include_router(comment)
 
 # Models
 
@@ -491,7 +495,8 @@ def delete_a_tweet(tweet_id: UUID = Path(
     summary = "Update a Tweet",
     tags = ["Tweets"]
 )
-def update_a_tweet(tweet_id: UUID = Path(
+def update_a_tweet(
+    tweet_id: UUID = Path(
         ...,
         title="Tweet ID",
         description="This is the tweet ID",
