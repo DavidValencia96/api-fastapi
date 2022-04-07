@@ -1,9 +1,9 @@
 [
   {
     "tweet_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "content": "string",
-    "create_at": "2022-04-05 03:59:10.496534",
-    "updated_at": "2022-04-05 08:59:12.537000+00:00",
+    "content": "hello world",
+    "create_at": "2022-04-05 15:29:29.886335",
+    "updated_at": "2022-04-05 16:05:00.611282",
     "by": {
       "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "email": "user@example.com",
@@ -15,27 +15,14 @@
   {
     "tweet_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
     "content": "string",
-    "create_at": "2022-04-05 03:59:10.496534",
-    "updated_at": "2022-04-05 08:59:12.537000+00:00",
+    "create_at": "2022-04-06 18:45:17.723830",
+    "updated_at": "2022-04-06 23:57:36.290000+00:00",
     "by": {
-      "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
+      "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "email": "user@example.com",
-      "first_name": "david",
-      "last_name": "toro",
-      "birth_date": "2022-04-05"
-    }
-  },
-  {
-    "tweet_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "content": "se va de twiteer",
-    "create_at": "2022-04-05 03:59:10.496534",
-    "updated_at": "2022-04-05 08:59:12.537000+00:00",
-    "by": {
-      "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
-      "email": "user@example.com",
-      "first_name": "david",
-      "last_name": "toro",
-      "birth_date": "2022-04-05"
+      "first_name": "juan",
+      "last_name": "valencia",
+      "birth_date": "2022-04-06"
     }
   }
 ]

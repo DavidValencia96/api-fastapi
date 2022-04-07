@@ -1,26 +1,18 @@
 [
   {
     "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "email": "juan@api.com",
+    "email": "user@example.com",
     "first_name": "juan",
     "last_name": "valencia",
     "birth_date": "2022-04-05",
-    "password": "stringst"
+    "password": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
   },
   {
     "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
     "email": "user@example.com",
-    "first_name": "david",
-    "last_name": "toro",
+    "first_name": "juan",
+    "last_name": "valencia",
     "birth_date": "2022-04-05",
-    "password": "hellojuan"
-  },
-  {
-    "user_id": "3fa85f64-5717-4562-b3fc-2c963f6623a7",
-    "email": "user@example.com",
-    "first_name": "pedro",
-    "last_name": "agudelo",
-    "birth_date": "2022-04-12",
-    "password": "hellopedro"
+    "password": "stringst"
   }
 ]
