@@ -27,7 +27,9 @@ from config.db import conn
 from models.tweetModel import tweetsModel
 from schemas.tweetSchemas import TweetSchema
 
-tweet = APIRouter()
+from middlewares.verify_toke_routes import VerifyTokenRoute
+
+tweet = APIRouter(route_class=VerifyTokenRoute)
 
 # Path Operations
 
@@ -41,7 +43,7 @@ tweet = APIRouter()
    summary = "Home App",
    tags = ["Tweets Data Base"]
 )
-def list_tweet():
+async def list_tweet():
    result = conn.execute(tweetsModel.select()).fetchall() # Retorna todo los datos de consulta a la db 
    if result:
        return result
@@ -60,7 +62,7 @@ def list_tweet():
    summary = "Crear Tweet en DB",
    tags = ["Tweets Data Base"]
 )
-def create_tweet(tweet: TweetSchema = Body(...)):
+async def create_tweet(tweet: TweetSchema = Body(...)):
    new_tweet = {
       "content": tweet.content,
       "create_tw_date": tweet.create_tw_date,
@@ -78,7 +80,7 @@ def create_tweet(tweet: TweetSchema = Body(...)):
    summary = "Detalle del Tweet en DB",
    tags = ["Tweets Data Base"]
 )
-def detail_tweet(tweet_id: str):   
+async def detail_tweet(tweet_id: str):   
    result = conn.execute(tweetsModel.select().where(tweetsModel.c.tweet_id == tweet_id)).first()
    if result:
         return result
@@ -123,7 +125,7 @@ def delete_tweet(tweet_id: str = Path(
    summary = "Editar Tweet en DB",
    tags = ["Tweets Data Base"]
 )
-def update_tweet(
+async def update_tweet(
    tweet_id: str,
    tweet: TweetSchema
 ):

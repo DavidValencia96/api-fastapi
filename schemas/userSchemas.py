@@ -9,7 +9,6 @@ from pydantic import Field # Validar los atributos de un modelo
 # Typing
 from typing import Optional
 
-
 class User(BaseModel):
     id: Optional[str]
     name: str =  Field(
