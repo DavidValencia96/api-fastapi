@@ -19,4 +19,4 @@ class TweetSchema(BaseModel):
     )
     create_tw_date: Optional[date] = Field(default=None)
     update_tw_date: Optional[date] = Field(default=None)
-    user_id_create: int = 0
+    user_id_create: Optional[int]

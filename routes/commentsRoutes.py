@@ -26,9 +26,10 @@ from pydantic import Field # Validar los atributos de un modelo
 from config.db import conn
 from models.commentsModel import commentsModel
 from schemas.commentsSchemas import CommentsSchemas
+from middlewares.verify_toke_routes import VerifyTokenRoute
 
 
-comment = APIRouter()
+comment = APIRouter(route_class=VerifyTokenRoute)
 
 # Path Operations
 
@@ -81,12 +82,10 @@ def create_comment(comment: CommentsSchemas = Body(...)):
    tags = ["Comments Data Base"]
 )
 def detail_comment(comment_id: str):   
-   result = conn.execute(commentsModel.select().where(commentsModel.c.tweet_id == comment_id)).first()
+   result = conn.execute(commentsModel.select().where(commentsModel.c.comment_id == comment_id)).first()
+   print(result)
    if result:
-        raise HTTPException(
-         status_code = status.HTTP_200_OK,
-         detail = f"{result}" 
-      )
+        return result
    else:
       raise HTTPException(
          status_code = status.HTTP_404_NOT_FOUND,
@@ -100,7 +99,7 @@ def detail_comment(comment_id: str):
    summary = "Eliminar comentario en DB",
    tags = ["Comments Data Base"]
 )
-def delete_tweet(comment_id: str = Path(
+def delete_comment(comment_id: str = Path(
    ...,
    description = "Escriba el ID del comentario a eliminar",
 )):
