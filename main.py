@@ -26,7 +26,8 @@ from routes.tweetRoutes import tweet
 from routes.commentsRoutes import comment
 from routes.auth import auth_routes
 from routes.user_list import userToken
-
+import os
+SECRET_KEY = os.getenv('ApiJwtPROGweb')
 
 
 app = FastAPI(
