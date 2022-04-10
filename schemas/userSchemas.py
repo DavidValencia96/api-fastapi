@@ -36,4 +36,4 @@ class User(BaseModel):
         min_length = 1,
         max_length = 50,
     )
-    tipo_user: int = 0
+    tipo_user: Optional[int] = 0
