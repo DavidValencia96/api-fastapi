@@ -4,3 +4,6 @@ __pycache__/
 
 # ARCH
 /document.txt
+/main2.py
+/tweet.json
+/users.json

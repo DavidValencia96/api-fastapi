@@ -1,18 +1,19 @@
 [
-  {
-    "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "email": "user@example.com",
-    "first_name": "juan",
-    "last_name": "valencia",
-    "birth_date": "2022-04-05",
-    "password": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-  },
-  {
-    "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
-    "email": "user@example.com",
-    "first_name": "juan",
-    "last_name": "valencia",
-    "birth_date": "2022-04-05",
-    "password": "stringst"
-  }
-]
+    {
+      "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "email": "user@example.com",
+      "first_name": "juan",
+      "last_name": "valencia",
+      "birth_date": "2022-04-05",
+      "password": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+    },
+    {
+      "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
+      "email": "user@example.com",
+      "first_name": "juan",
+      "last_name": "valencia",
+      "birth_date": "2022-04-05",
+      "password": "stringst"
+    }
+  ]
+  
