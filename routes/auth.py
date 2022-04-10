@@ -29,6 +29,20 @@ class UserLogin(BaseModel):
     tags = ["Login/sign-up Data Base"]
 )
 def login(user: UserLogin):
+    """
+    Login JTW
+    
+    EndPoint para solicitar al sistema un login JWT el cual el mismo le va a retornar un TOKEN y este va a ser requerido para
+    todas las funcionalidades de la API, en caso de no enviar el TOKEN o enviar uno incorrecto, el sistema le retornara un mensaje de error.
+
+    Parameters:
+    - Request BODY (raw -> (JSON)):
+        - "email" : email del usuario
+        - "password" : contraseña del usuario
+    
+    - Return:
+        - token jwt
+    """
     result = conn.execute(users.select().where(users.c.email == user.email and users.c.password == user.password)).first()
     # print(result)
     if (user.email == result.email and user.password == result.password):
@@ -49,8 +63,26 @@ def login(user: UserLogin):
     tags = ["Login/sign-up Data Base"]
 )
 def verify_token(Authorization: str = Header(None)):
+    """
+    Verificar token JTW
+    
+    EndPoint para validar el token JWT que retorno la API al momento de hacer el login.
+
+    Parameters:
+    - Headers
+        - Content-Type: application/json
+        - Authorization: Bearer Token {jwt_token}
+
+    
+    - Return:
+        - "email"
+        - "password"
+        - "exp"
+        
+    """
     token = Authorization.split(" ")[1]
-    # print(token)
+    print(token)
+    # return "Success TOKEN JWT"
     return validate_token(token, output=True)
 
 
@@ -63,6 +95,32 @@ def verify_token(Authorization: str = Header(None)):
     tags = ["Login/sign-up Data Base"]
 )
 def create_user(user: User = Body(...)):
+    """
+    Registro de usuario
+    
+    EndPoint para registrar usuarios.
+
+    Parameters:
+    - Request BODY (raw -> (JSON)):
+        - "name" : nombre del usuario - (String(50))
+        - "country" : pais del usuario - (String(30))
+        - "phone" : telefono o celular del usuario - (String(10))
+        - "user_create" : fecha en la que se crea el usuario - (String(20))
+        - "email" : email del usuario - (String(50))
+        - "password" : contraseña usuario - (String(50))
+        - "tipo_user" : tipo usuario - (Integer)
+    
+    - Return:
+        - "id"
+        - "name"
+        - "country"
+        - "phone"
+        - "user_create"
+        - "email"
+        - "password"
+        - "tipo_user"
+        
+    """
     #diccionaro que contiene los datos solciitados
     new_user = { 
         "name": user.name, 

@@ -44,6 +44,24 @@ tweet = APIRouter(route_class=VerifyTokenRoute)
    tags = ["Tweets Data Base"]
 )
 async def list_tweet():
+   """
+    Listar Tweets publicados
+    
+    EndPoint para ver los tweets que ya se encuentra publicados.
+
+    Parameters:
+    - Headers
+        - Content-Type: application/json
+        - Authorization: Bearer Token {jwt_token}
+
+    - Return:
+        - "tweet_id"
+        - "content"
+        - "create_tw_date"
+        - "update_tw_date"
+        - "user_id_create"
+        
+    """
    result = conn.execute(tweetsModel.select()).fetchall() # Retorna todo los datos de consulta a la db 
    if result:
        return result
@@ -63,6 +81,30 @@ async def list_tweet():
    tags = ["Tweets Data Base"]
 )
 async def create_tweet(tweet: TweetSchema = Body(...)):
+   """
+    Crear Tweet
+    
+    EndPoint para crear un tweet.
+
+    Parameters:
+    - Headers
+        - Content-Type: application/json
+        - Authorization: Bearer Token {jwt_token}
+
+    - Request BODY (raw -> (JSON)):
+        - "content" : contenido del tweet - (String(250))
+        - "create_tw_date" : fecha de creación del twwet - (String(30))
+        - "update_tw_date" : actualización del tweet -(String(30))
+        - "user_id_create" : usuario que lo creo - (Integer)
+    
+    - Return:
+        - "tweet_id"
+        - "content"
+        - "create_tw_date"
+        - "update_tw_date"
+        - "user_id_create"
+        
+   """
    new_tweet = {
       "content": tweet.content,
       "create_tw_date": tweet.create_tw_date,
@@ -81,6 +123,24 @@ async def create_tweet(tweet: TweetSchema = Body(...)):
    tags = ["Tweets Data Base"]
 )
 async def detail_tweet(tweet_id: str):   
+   """
+    Detalle del Tweet
+    
+    EndPoint para ver el detalle de un tweet.
+
+    Parameters:
+    - Headers
+        - Content-Type: application/json
+        - Authorization: Bearer Token {jwt_token}
+
+    - Return:
+        - "tweet_id"
+        - "content"
+        - "create_tw_date"
+        - "update_tw_date"
+        - "user_id_create"
+        
+    """
    result = conn.execute(tweetsModel.select().where(tweetsModel.c.tweet_id == tweet_id)).first()
    if result:
         return result
@@ -102,19 +162,25 @@ def delete_tweet(tweet_id: str = Path(
    ...,
    description = "Escriba el ID del Tweet a eliminar",
 )):
-   conn.execute(tweetsModel.delete().where(tweetsModel.c.tweet_id == tweet_id))
-   return Response(status_code = status.HTTP_200_OK)
+   """
+    Eliminar un Tweet
+    
+    EndPoint para eliminar un tweet.
 
-   # if tweet_id in result:
-   #    raise HTTPException(
-   #       status_code = status.HTTP_200_OK,
-   #       detail = f"¡Se elimino el Tweet Correctamente!" 
-   #    )
-   # else:
-   #    raise HTTPException(
-   #       status_code = status.HTTP_400_BAD_REQUEST,
-   #       detail = f"¡No se elimino el Tweet Correctamente, intente nuevamente!" 
-   #    )
+    Parameters:
+    - Headers
+        - Content-Type: application/json
+        - Authorization: Bearer Token {jwt_token}
+
+    - Return:
+        - status code: 200 OK
+        
+   """
+   conn.execute(tweetsModel.delete().where(tweetsModel.c.tweet_id == tweet_id))
+   return HTTPException(
+         status_code = status.HTTP_404_NOT_FOUND,
+         detail = f"¡No se encontro el Tweet, intente nuevamente!" 
+      )
 
 
 ## Editar Tweet
@@ -129,6 +195,28 @@ async def update_tweet(
    tweet_id: str,
    tweet: TweetSchema
 ):
+   """
+    Crear Tweet
+    
+    EndPoint para editar un tweet.
+
+    Parameters:
+    - Headers
+        - Content-Type: application/json
+        - Authorization: Bearer Token {jwt_token}
+
+    - Request BODY (raw -> (JSON)):
+        - "content" : contenido del tweet - (String(250))
+        - "update_tw_date" : actualización del tweet -(String(30))
+    
+    - Return:
+        - "tweet_id"
+        - "content"
+        - "create_tw_date"
+        - "update_tw_date"
+        - "user_id_create"
+        
+    """
    conn.execute(tweetsModel.update().values(
       content = tweet.content,
       update_tw_date = tweet.update_tw_date,
