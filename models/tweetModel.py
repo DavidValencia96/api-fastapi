@@ -15,7 +15,7 @@ tweetsModel = Table("tweet", meta,
               Column("content", String(255)), 
               Column("create_tw_date", String(30)), 
               Column("update_tw_date", String(30)), 
-              Column("user_id_create", String(30))
+              Column("user_id_create", Integer)
 )
 
 meta.create_all(engine)

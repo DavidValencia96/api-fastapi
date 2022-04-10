@@ -85,6 +85,27 @@ user = APIRouter(route_class=VerifyTokenRoute)
     tags = ["User Data Base"]
 )
 def list_user():
+    """
+    Listar usuarios
+    
+    EndPoint podra listar todos los usuarios registrados.
+
+    Parameters:
+    - Headers
+        - Content-Type: application/json
+        - Authorization: Bearer Token {jwt_token}
+    
+    - Return:
+        - "id"
+        - "name"
+        - "country"
+        - "phone"
+        - "user_create"
+        - "email"
+        - "password"
+        - "tipo_user"
+        
+    """
     result = conn.execute(users.select()).fetchall() # Retorna todo los datos de consulta a la db 
     if result:
         return result
@@ -104,6 +125,36 @@ def list_user():
     tags = ["User Data Base"]
 )
 def create_user(user: User = Body(...)):
+    """
+    Registro de usuario
+    
+    EndPoint para registrar usuarios y requerira tener un login con token jwt para continuar con  la creación.
+
+    Parameters:
+    - Headers
+        - Content-Type: application/json
+        - Authorization: Bearer Token {jwt_token}
+        
+    - Request BODY (raw -> (JSON)):
+        - "name" : nombre del usuario - (String(50))
+        - "country" : pais del usuario - (String(30))
+        - "phone" : telefono o celular del usuario - (String(10))
+        - "user_create" : fecha en la que se crea el usuario - (String(20))
+        - "email" : email del usuario - (String(50))
+        - "password" : contraseña usuario - (String(50))
+        - "tipo_user" : tipo usuario - (Integer)
+    
+    - Return:
+        - "id"
+        - "name"
+        - "country"
+        - "phone"
+        - "user_create"
+        - "email"
+        - "password"
+        - "tipo_user"
+        
+    """
     #diccionaro que contiene los datos solciitados
     new_user = { 
         "name": user.name, 
@@ -130,6 +181,27 @@ def create_user(user: User = Body(...)):
     
 )
 def user_detail(id: str):
+    """
+    Detalle de usuario
+    
+    EndPoint para ver el detalle de un usuario.
+
+    Parameters:
+    - Headers
+        - Content-Type: application/json
+        - Authorization: Bearer Token {jwt_token}
+    
+    - Return:
+        - "id"
+        - "name"
+        - "country"
+        - "phone"
+        - "user_create"
+        - "email"
+        - "password"
+        - "tipo_user"
+        
+    """
     # print(id)
     return conn.execute(users.select().where(users.c.id == id)).first()
 
@@ -137,18 +209,30 @@ def user_detail(id: str):
 @user.delete(
     path ="/user/delete/{id}", 
     status_code = status.HTTP_200_OK,
-    # status_code = status.HTTP_200_OK,
     summary = "Borrar usuario DB",
     tags = ["User Data Base"]
 )
 def delete_user(id: str):
+    """
+    Eliminar un usuario
+    
+    EndPoint podra eliminar un usuario que ya se encuentre registrado.
+
+    Parameters:
+    - Headers
+        - Content-Type: application/json
+        - Authorization: Bearer Token {jwt_token}
+    
+    - Return:
+        - status code: 200 OK
+        
+    """
     result = conn.execute(users.delete().where(users.c.id == id)) 
     # return "Delete user success"
-    return Response(status_code = status.HTTP_200_OK)
-    # return HTTPException(
-    #             status_code = status.HTTP_204_NO_CONTENT,
-    #             detail = f"¡Usuario no encontrado!" 
-    # )
+    return HTTPException(
+                status_code = status.HTTP_204_NO_CONTENT,
+                detail = f"¡Usuario no encontrado!" 
+    )
 
 
 @user.put(
@@ -158,6 +242,36 @@ def delete_user(id: str):
     tags = ["User Data Base"]
 )
 def update_user(id: str, user: User):
+    """
+    Editar un usuario
+    
+    EndPoint podra editar un usuario.
+
+    Parameters:
+    - Headers
+        - Content-Type: application/json
+        - Authorization: Bearer Token {jwt_token}
+        
+    - Request BODY (raw -> (JSON)):
+        - "name" : nombre del usuario - (String(50))
+        - "country" : pais del usuario - (String(30))
+        - "phone" : telefono o celular del usuario - (String(10))
+        - "user_create" : fecha en la que se crea el usuario - (String(20))
+        - "email" : email del usuario - (String(50))
+        - "password" : contraseña usuario - (String(50))
+        - "tipo_user" : tipo usuario - (Integer)
+    
+    - Return:
+        - "id"
+        - "name"
+        - "country"
+        - "phone"
+        - "user_create"
+        - "email"
+        - "password"
+        - "tipo_user"
+        
+    """
     result = conn.execute(users.update().values(
         name = user.name, 
         country = user.country, 
