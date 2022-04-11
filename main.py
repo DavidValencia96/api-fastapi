@@ -17,6 +17,8 @@ from fastapi import HTTPException
 from fastapi import Body
 from fastapi import Form
 from fastapi import Path
+from fastapi.responses import RedirectResponse
+
 
 from dotenv import load_dotenv
 
@@ -35,7 +37,9 @@ app = FastAPI(
     version="1.0.0"
 )
 
-
+@app.get("/", response_class=RedirectResponse, status_code=200)
+async def redirect_docs():
+    return "https://fastapi-jd.herokuapp.com/docs"
 
 app.include_router(user, prefix="/api")
 app.include_router(tweet, prefix="/api")
