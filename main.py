@@ -39,7 +39,7 @@ app = FastAPI(
 )
 
 
-@app.post(
+@app.get(
     path = "/", 
     status_code = status.HTTP_200_OK,
 )
