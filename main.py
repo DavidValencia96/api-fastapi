@@ -38,7 +38,7 @@ app = FastAPI(
     version="1.0.1" #Se incluye documentación y conexión a base de datos heroku
 )
 
-@app.get("/", response_class=RedirectResponse, status_code=200)
+
 async def redirect_docs():
     
     """ Nullo """
