@@ -44,3 +44,7 @@ app.include_router(auth_routes, prefix="/api")
 app.include_router(userToken, prefix="/api")
 
 load_dotenv()
+
+@app.get("/", response_class=RedirectResponse, status_code=200)
+async def redirect_docs():
+    return "https://fastapi-jd.herokuapp.com/docs" 
