@@ -43,7 +43,6 @@ async def redirect_docs():
     """ Nullo"""
     return RedirectResponse("https://fastapi-jd.herokuapp.com/docs" )
 
-
 app.include_router(user, prefix="/api")
 app.include_router(tweet, prefix="/api")
 app.include_router(comment, prefix="/api")
