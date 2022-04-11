@@ -238,6 +238,7 @@ def delete_user(id: str):
 @user.put(
     path = "/user/edit/{id}", 
     response_model = User,
+    status_code = status.HTTP_200_OK,
     summary = "Actualizar usuario DB",
     tags = ["User Data Base"]
 )

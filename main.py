@@ -37,14 +37,13 @@ app = FastAPI(
     # version="1.0.0" # se crea la base del proyecto
     version="1.0.1" #Se incluye documentación y conexión a base de datos heroku
 )
-
-
+@app.post(
+    path = "", 
+    status_code = status.HTTP_200_OK,
+)
 async def redirect_docs():
-    
     """ Nullo """
-    
     return RedirectResponse("https://fastapi-jd.herokuapp.com/docs")
-
 
 app.include_router(user, prefix="/api")
 app.include_router(tweet, prefix="/api")
