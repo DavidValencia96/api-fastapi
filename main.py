@@ -40,6 +40,7 @@ app = FastAPI(
 
 @app.get("/", response_class=RedirectResponse, status_code=200)
 async def redirect_docs():
+    """ Nullo"""
     return RedirectResponse("https://fastapi-jd.herokuapp.com/docs" )
 
 
