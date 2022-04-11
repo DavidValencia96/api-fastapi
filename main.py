@@ -17,6 +17,8 @@ from fastapi import HTTPException
 from fastapi import Body
 from fastapi import Form
 from fastapi import Path
+from fastapi.responses import RedirectResponse
+
 
 from dotenv import load_dotenv
 
@@ -32,9 +34,13 @@ SECRET_KEY = os.getenv('ApiJwtPROGweb')
 
 app = FastAPI(
     title="Api Programación Web in FastApi - Python",
-    version="1.0.0"
+    # version="1.0.0" # se crea la base del proyecto
+    version="1.0.1" #Se incluye documentación y conexión a base de datos heroku
 )
 
+@app.get("/", response_class=RedirectResponse, status_code=200)
+async def redirect_docs():
+    return RedirectResponse("https://fastapi-jd.herokuapp.com/docs" )
 
 
 app.include_router(user, prefix="/api")
