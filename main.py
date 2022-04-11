@@ -39,8 +39,13 @@ app = FastAPI(
 )
 
 
+@app.post(
+    path = "", 
+    status_code = status.HTTP_200_OK,
+)
 async def redirect_docs():
-    return RedirectResponse("https://fastapi-jd.herokuapp.com/docs" )
+    """ Nullo """
+    return RedirectResponse("https://fastapi-jd.herokuapp.com/docs")
 
 
 app.include_router(user, prefix="/api")
@@ -50,3 +55,5 @@ app.include_router(auth_routes, prefix="/api")
 app.include_router(userToken, prefix="/api")
 
 load_dotenv()
+
+
