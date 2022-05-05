@@ -28,8 +28,8 @@ from models.commentsModel import commentsModel
 from schemas.commentsSchemas import CommentsSchemas
 from middlewares.verify_toke_routes import VerifyTokenRoute
 
-
-comment = APIRouter(route_class=VerifyTokenRoute)
+# comment = APIRouter(route_class=VerifyTokenRoute)
+comment = APIRouter() 
 
 # Path Operations
 

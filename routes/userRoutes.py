@@ -36,7 +36,6 @@ f = Fernet(key) # tenemos la funcion f
 
 user = APIRouter(route_class=VerifyTokenRoute)
 
-
 # class UserLogin(BaseModel):
 #     email: EmailStr = Field(...)
 #     password: str = Field(...)
