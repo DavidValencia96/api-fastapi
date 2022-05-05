@@ -7,6 +7,7 @@ from requests import get
 userToken = APIRouter() 
 
 
+
 class UserJTW(BaseModel):
     email: str
     password: str

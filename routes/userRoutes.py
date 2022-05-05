@@ -38,6 +38,7 @@ f = Fernet(key) # tenemos la funcion f
 user = APIRouter()
 
 
+
 # class UserLogin(BaseModel):
 #     email: EmailStr = Field(...)
 #     password: str = Field(...)
