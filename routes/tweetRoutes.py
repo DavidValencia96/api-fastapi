@@ -27,9 +27,10 @@ from config.db import conn
 from models.tweetModel import tweetsModel
 from schemas.tweetSchemas import TweetSchema
 
-from middlewares.verify_toke_routes import VerifyTokenRoute
+# from middlewares.verify_toke_routes import VerifyTokenRoute
 
-tweet = APIRouter(route_class=VerifyTokenRoute)
+# tweet = APIRouter(route_class=VerifyTokenRoute)
+tweet = APIRouter()
 
 # Path Operations
 

@@ -27,14 +27,15 @@ from models.userModel import users
 from schemas.userSchemas import User
 # from schemas.userSchemas import UserLogin
 from functions_jwt import validate_token, write_token
-from middlewares.verify_toke_routes import VerifyTokenRoute
+# from middlewares.verify_toke_routes import VerifyTokenRoute
 
 
 key = Fernet.generate_key() # generamos una contraseña aleatoria
 f = Fernet(key) # tenemos la funcion f
 
 
-user = APIRouter(route_class=VerifyTokenRoute)
+# user = APIRouter(route_class=VerifyTokenRoute)
+user = APIRouter()
 
 
 # class UserLogin(BaseModel):
