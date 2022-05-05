@@ -30,7 +30,7 @@ from schemas.tweetSchemas import TweetSchema
 # from middlewares.verify_toke_routes import VerifyTokenRoute
 
 # tweet = APIRouter(route_class=VerifyTokenRoute)
-tweet = APIRouter()
+tweet = APIRouter() 
 
 # Path Operations
 

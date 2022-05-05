@@ -4,7 +4,7 @@ from requests import get
 # from middlewares.verify_toke_routes import VerifyTokenRoute
 
 # userToken = APIRouter(route_class=VerifyTokenRoute)
-userToken = APIRouter()
+userToken = APIRouter() 
 
 
 class UserJTW(BaseModel):
