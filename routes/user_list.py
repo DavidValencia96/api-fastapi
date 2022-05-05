@@ -1,9 +1,10 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 from requests import get
-from middlewares.verify_toke_routes import VerifyTokenRoute
+# from middlewares.verify_toke_routes import VerifyTokenRoute
 
-userToken = APIRouter(route_class=VerifyTokenRoute)
+# userToken = APIRouter(route_class=VerifyTokenRoute)
+userToken = APIRouter()
 
 
 class UserJTW(BaseModel):
