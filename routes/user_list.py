@@ -6,8 +6,6 @@ from requests import get
 # userToken = APIRouter(route_class=VerifyTokenRoute)
 userToken = APIRouter() 
 
-
-
 class UserJTW(BaseModel):
     email: str
     password: str

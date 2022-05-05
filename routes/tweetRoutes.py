@@ -32,7 +32,6 @@ from schemas.tweetSchemas import TweetSchema
 # tweet = APIRouter(route_class=VerifyTokenRoute)
 tweet = APIRouter() 
 
-
 # Path Operations
 
 ## Tweet's
