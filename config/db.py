@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, MetaData
 
 
-# Conexion de base de datos local
+# Conexion de base de datos localx
 # engine = create_engine("mysql+pymysql://root:@localhost:3306/api-jd")
 
 # Conexion de base de datos nube

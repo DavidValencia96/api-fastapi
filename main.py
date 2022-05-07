@@ -45,7 +45,9 @@ app = FastAPI(
 )
 def redirect_docs():
     """ Nullo """
-    return RedirectResponse("https://fastapi-jd.herokuapp.com/docs")
+    # return RedirectResponse("https://fastapi-jd.herokuapp.com/docs")
+    return {"welcome": "to redirect API -> https://fastapi-jd.herokuapp.com/docs"}
+
 
 
 app.include_router(user, prefix="/api")
