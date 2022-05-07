@@ -30,11 +30,11 @@ SET time_zone = "+00:00";
 CREATE TABLE `comments` (
   `comment_id` int(11) NOT NULL,
   `tweet_id` int(11) DEFAULT NULL,
-  `comment_content` varchar(255) COLLATE utf8mb4_general_nopad_ci DEFAULT NULL,
-  `cm_create_date` varchar(30) COLLATE utf8mb4_general_nopad_ci DEFAULT NULL,
-  `cm_update_date` varchar(30) COLLATE utf8mb4_general_nopad_ci DEFAULT NULL,
+  `comment_content` varchar(255),
+  `cm_create_date` varchar(30),
+  `cm_update_date` varchar(30),
   `user_id_comment` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_nopad_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `comments`
@@ -57,11 +57,11 @@ INSERT INTO `comments` (`comment_id`, `tweet_id`, `comment_content`, `cm_create_
 
 CREATE TABLE `tweet` (
   `tweet_id` int(11) NOT NULL,
-  `content` varchar(255) COLLATE utf8mb4_general_nopad_ci DEFAULT NULL,
-  `create_tw_date` varchar(30) COLLATE utf8mb4_general_nopad_ci DEFAULT NULL,
-  `update_tw_date` varchar(30) COLLATE utf8mb4_general_nopad_ci DEFAULT NULL,
-  `user_id_create` varchar(30) COLLATE utf8mb4_general_nopad_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_nopad_ci;
+  `content` varchar(255),
+  `create_tw_date` varchar(30),
+  `update_tw_date` varchar(30),
+  `user_id_create` varchar(30)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tweet`
@@ -83,14 +83,14 @@ INSERT INTO `tweet` (`tweet_id`, `content`, `create_tw_date`, `update_tw_date`, 
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `name` varchar(50) COLLATE utf8mb4_general_nopad_ci DEFAULT NULL,
-  `country` varchar(30) COLLATE utf8mb4_general_nopad_ci DEFAULT NULL,
-  `phone` varchar(10) COLLATE utf8mb4_general_nopad_ci DEFAULT NULL,
-  `email` varchar(50) COLLATE utf8mb4_general_nopad_ci DEFAULT NULL,
-  `password` varchar(50) COLLATE utf8mb4_general_nopad_ci DEFAULT NULL,
-  `user_create` varchar(20) COLLATE utf8mb4_general_nopad_ci DEFAULT NULL,
+  `name` varchar(50),
+  `country` varchar(30),
+  `phone` varchar(10),
+  `email` varchar(50),
+  `password` varchar(50),
+  `user_create` varchar(20),
   `tipo_user` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_nopad_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `users`
