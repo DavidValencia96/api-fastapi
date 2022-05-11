@@ -1,7 +1,11 @@
 from sqlalchemy import create_engine, MetaData
 
+
+# Conexion de base de datos localx
 # engine = create_engine("mysql+pymysql://root:@localhost:3306/api-jd")
-engine = create_engine("mysql+pymysql://b5a3c397ee901e:605edb7e@us-cdbr-east-05.cleardb.net/heroku_705c666e6924547")
+
+# Conexion de base de datos nube
+engine = create_engine("mysql+pymysql://bdb0ca6438d403:5d3cde1c@us-cdbr-east-05.cleardb.net/heroku_92dcf5a3cd1744f") 
 
 meta = MetaData()
 
